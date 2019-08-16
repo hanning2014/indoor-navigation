@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+http://swifthealthgitlab.com/webdev/indoor-navigation.git"
+    "url": "git+https://github.com/hanning2014/indoor-navigation.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "http://swifthealthgitlab.com/webdev/indoor-navigation.git"
+    "url": "https://github.com/hanning2014/indoor-navigation.git"
   },
-  "homepage": "http://swifthealthgitlab.com/webdev/indoor-navigation.git#readme"
+  "homepage": "https://github.com/hanning2014/indoor-navigation.git#readme"
 }
