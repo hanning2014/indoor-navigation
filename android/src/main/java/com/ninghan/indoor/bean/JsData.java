@@ -1,4 +1,4 @@
-package com.yunjinginc.ibeacon.bean;
+package com.ninghan.indoor.bean;
 
 import java.util.ArrayList;
 import java.util.List;

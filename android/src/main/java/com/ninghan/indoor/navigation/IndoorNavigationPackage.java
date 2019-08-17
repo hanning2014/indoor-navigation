@@ -9,14 +9,19 @@ import com.facebook.react.uimanager.ViewManager;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
+
 
 public class IndoorNavigationPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.asList(new NativeModule[]{
-                new IndoorNavigationModule(reactContext),
-        });
+        //return Arrays.asList(new NativeModule[]{
+        //        new IndoorNavigationModule(reactContext),
+        //});
+          List<NativeModule> modules = new ArrayList<>();
+                modules.add(new IndoorNavigationModule(reactContext));
+                return modules;
     }
 
     public List<Class<? extends JavaScriptModule>> createJSModules() {

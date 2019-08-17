@@ -18,17 +18,20 @@ import com.minew.beacon.BluetoothState;
 import com.minew.beacon.MinewBeacon;
 import com.minew.beacon.MinewBeaconManager;
 import com.minew.beacon.MinewBeaconManagerListener;
-import com.yunjinginc.ibeacon.bean.Beacon;
-import com.google.gson.Gson;
+import com.ninghan.indoor.bean.Beacon;
+import com.ninghan.indoor.bean.JsData;
+//import com.google.gson.Gson;
+import java.util.List;
 
 public class IndoorNavigationModule extends ReactContextBaseJavaModule {
     private final String TAG ="logs";
-    private Context context;
+    private ReactContext context;
     private MinewBeaconManager mMinewBeaconManager;
-
+    //private Gson mGson = new Gson();
+    private JsData mJsData = new JsData();
     @Override
     public String getName() {
-        return "RCTNavigation";
+        return "IndoorNavigationModule";
     }
 
     private void commonEvent(WritableMap map) {
@@ -46,33 +49,36 @@ public class IndoorNavigationModule extends ReactContextBaseJavaModule {
 
 
 
-    public IndoorNavigationModule(ReactApplicationContext context) {
-        super(context);
-        this.context = (Context) reactContext;
+    public IndoorNavigationModule(ReactApplicationContext reactContext) {
+        super(reactContext);
+        context = reactContext;
     }
 
     // 初始化
     @ReactMethod
     private void initManager() {
-        mMinewBeaconManager = MinewBeaconManager.getInstance(this);
+        mMinewBeaconManager = MinewBeaconManager.getInstance(context);
     }
 
     // scan bluetooth state
     @ReactMethod
-    private void checkBluetooth() {
+    private void checkBluetooth(final Callback  callback) {
         BluetoothState bluetoothState = mMinewBeaconManager.checkBluetoothState();
         switch (bluetoothState) {
             // 不支持蓝牙
             case BluetoothStateNotSupported:
                 startBeaconComplete("system unsupported");
+                callback.invoke("-1");
                 break;
             // 蓝牙未开启
             case BluetoothStatePowerOff:
                 startBeaconComplete("bluetooth power off");
+                callback.invoke("0");
                 break;
             // 蓝牙开启
             case BluetoothStatePowerOn:
                 startBeaconComplete("ok");
+                callback.invoke("1");
                 if (mMinewBeaconManager != null) {
                     mMinewBeaconManager.startScan();
                 }
@@ -155,7 +161,7 @@ public class IndoorNavigationModule extends ReactContextBaseJavaModule {
         if (mJsData.getBeacons().size() == 0) {
             return;
         }
-        String data = mGson.toJson(mJsData);
+        //String data = mGson.toJson(mJsData);
         // todo
         // searchBeaconComplete(data);
     }

@@ -1,4 +1,4 @@
-package com.yunjinginc.ibeacon.bean;
+package com.ninghan.indoor.bean;
 
 import com.minew.beacon.BeaconValueIndex;
 import com.minew.beacon.MinewBeacon;
